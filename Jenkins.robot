@@ -1,24 +1,19 @@
 *** Settings ***
-Library           SeleniumLibrary
+Library    SeleniumLibrary
 
 *** Variables ***
-${SERVER}         localhost:7272
-${BROWSER}        chrome
-${DELAY}          0
-${VALID USER}     demo
-${VALID PASSWORD}    mode
-${WELCOME URL}      http://www.google.co.th
+${BROWSER}    chrome
+${WELCOME URL}    https://www.google.co.th
 ${URL}    www.cs.kku.ac.th
+${CHECK URL}    https://www.google.co.th/
 
-*** Keywords ***
+*** Test Cases ***
 Open Browser To Login Page
     Open Browser    ${WELCOME URL}    ${BROWSER}
-    Location Should Be    ${WELCOME URL}
-
+	Location Should Be    ${CHECK URL}
+	
 Go To CS KKU
     Input Text    q    ${URL}
-	Click Button    btnK
+	Submit Form    tsf
 	Wait Until Page Contains    CS KKU
-
-Close Browser
 	Close Browser
